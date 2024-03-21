@@ -7,6 +7,7 @@
 (function() {
   "use strict";
 
+
   /**
    * Easy selector helper function
    */
@@ -168,6 +169,9 @@
     })
   }
 
+
+  
+ 
   /**
    * Porfolio isotope and filter
    */
@@ -248,6 +252,50 @@
       clickable: true
     }
   });
+
+  // veille techno slide
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      centeredSlidesBounds: true, // Ajoutez cette ligne pour centrer le slide actif
+      slidesPerView: '2',
+      coverflowEffect: {
+        rotate:   40,
+        stretch:   50,
+        depth:   100,
+        modifier:   1,
+        slideShadows : false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay:   2500,
+        disableOnInteraction: false,
+      },
+      loop: true,
+      on: {
+        click: function (swiper, event) {
+          var clickedIndex = swiper.clickedIndex;
+          var clickedSlide = swiper.slides[clickedIndex];
+          var url = clickedSlide.dataset.url;
+          if (url) {
+            window.location.href = url;
+          }
+        }
+      }
+    });
+  });
+
+
+
 
   /**
    * Animation on scroll
